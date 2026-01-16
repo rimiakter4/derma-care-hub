@@ -1,24 +1,87 @@
-
- @import "tailwindcss";
+/* @import "tailwindcss";
 
 @layer base {
   :root {
-    /* লাইট মোডে ব্যাকগ্রাউন্ড সাদা এবং টেক্সট ডার্ক গ্রিন */
-    --background: #ffffff !important;
-    --foreground: #0D4C4F !important;
+    --background: #ffffff;
+    --foreground: #0d4c4f;
+ 
   }
 
   .dark {
-    /* ডার্ক মোডে ব্যাকগ্রাউন্ড ডার্ক গ্রিন এবং টেক্সট সাদা */
-    --background: #0D4C4F !important;
-    --foreground: #ffffff !important;
+    --background: #060b13; 
+    --foreground: #ffffff;
+  }
+  body { */
+    /* সরাসরি নিচের লাইনটি ব্যবহার করুন, আলাদা color: var(...) দিবেন না */
+    /* @apply bg-white dark:bg-[#060b13] text-slate-900 dark:text-white antialiased transition-colors duration-300;
+  } */
+
+  /* body {
+    background-color: var(--background) ; 
+    color: var(--foreground) ;
+    @apply text-slate-900 dark:text-white antialiased transition-colors duration-300;
+} */
+    /* @apply antialiased transition-colors duration-300; */
+  /* } */
+/* @import "tailwindcss";
+
+@theme { */
+  /* এটি টেলউইন্ড ৪-এ ডার্ক মোডকে ক্লাসের মাধ্যমে নিয়ন্ত্রণ করতে বাধ্য করবে */
+  /* --dark-mode: class; 
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0d4c4f;
+  }
+
+  .dark {
+    --background: #060b13;
+    --foreground: #ffffff;
   }
 
   body {
-    background-color: var(--background) !important;
-    color: var(--foreground) !important;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin: 0;
-    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased transition-colors duration-300;
+  }
+} */
+ @import "tailwindcss";
+
+@theme {
+  --dark-mode: class;
+  
+  /* ব্রান্ড কালারগুলো এখানে ডিফাইন করা হলো */
+  --color-primary: var(--primary);    /* মেইন টাইটেল এবং নেভবার */
+  --color-secondary: var(--secondary);  /* বাটন এবং কল-টু-অ্যাকশন */
+  --color-accent: var(--accent);      /* হালকা হাইলাইট এবং বর্ডার */
+}
+
+@layer base {
+  :root {
+    /* লাইট মোড: ব্যানারের কালার প্যালেট */
+    --background: #fdfdfd;   /* একদম ফ্রেশ হোয়াইট ব্যাকগ্রাউন্ড */
+    --foreground: #0d4c4f;   /* আপনার নেভবারের সেই ডার্ক টিল */
+    
+    --primary: #0d4c4f;      /* টাইটেলের জন্য ডার্ক টিল */
+    --secondary: #13b1a5;    /* ব্যানারের 'Explore Products' বাটনের কালার */
+    --accent: #dcfce7;       /* 'Dermatologist Recommended' বক্সের হালকা সবুজ */
+  }
+
+  .dark {
+    /* ডার্ক মোড: প্রিমিয়াম এবং আই-সুদিং লুক */
+    --background: #060b13;   /* আপনার আগের ডার্ক ব্যাকগ্রাউন্ড */
+    --foreground: #f1f5f9;   /* অফ-হোয়াইট টেক্সট */
+    
+    --primary: #5eead4;      /* ডার্ক মোডে আপনার পছন্দের সেই লাইম কালার */
+    --secondary: #2dd4bf;    /* উজ্জ্বল সি-গ্রিন */
+    --accent: #1e293b;       /* ডার্ক বর্ডারের জন্য */
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased transition-colors duration-300;
   }
 }

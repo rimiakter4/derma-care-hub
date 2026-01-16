@@ -1,21 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./component/**/*.{js,ts,jsx,tsx,mdx}",
+
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
+  theme: {Sextend: {
       colors: {
         brand: {
-          deep: "#0D4C4F",   // Logo Deep Teal
-          emerald: "#14B8A6", // Main Emerald
-          mint: "#99F6E4",    // Soft Mint
+          deep: "#0D4C4F",
+          emerald: "#14B8A6",
+          mint: "#99F6E4",
         }
       }
     },
   },
   plugins: [],
-};
+}
