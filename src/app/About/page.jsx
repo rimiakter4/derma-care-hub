@@ -178,13 +178,13 @@ const AboutPage = () => {
               </div>
             </div>
             
-            <motion.button 
+            {/* <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-12 px-10 py-5 bg-primary text-bg-base rounded-2xl font-black text-lg shadow-2xl"
             >
                 Our Full Philosophy
-            </motion.button>
+            </motion.button> */}
           </motion.div>
         </div>
       </section>
