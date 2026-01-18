@@ -1,63 +1,86 @@
-// import Image from "next/image";
-// import Banner from "./Banner/page";
-// import HowItWorks from "@/Component/HowitWork";
 
-// export default function Home() {
-//   return (
-//   <div>
-//  {/* {/* <Banner></Banner> */}
-//  {/* <HowItWorks></HowItWorks>  */}
-//  <section > {/* এটি ডার্ক মোডেও হোয়াইটই থাকবে */}
-//   <h2>Hello</h2>
-//    <HowItWorks></HowItWorks>
-// </section>
-   
 
-//   </div>
-//   );
-// }
-// import Image from "next/image";
+// import SkinProblem from "@/component/SkinProblem";
 // import Banner from "./Banner/page";
-// import HowItWorks from "@/Component/HowitWork";
+// import HowItWorks from "@/component/HowitWork";
+// import WhyRecommended from "@/component/WhyRecomanded";
+// import Brands from "@/component/Brands";
+// import ExpertBoard from "@/component/Expertise";
+// import ReviewClient from "@/component/ReviewClient";
+// import Authenticity from "@/component/Authecity";
+// import ClinicalEvidence from "@/component/BeforeAfter";
+// import Productspage from "./products/page";
+
 
 // export default function Home() {
 //   return (
 //     <div>
-//       {/* বাড়তি <section> ট্যাগটি সরিয়ে সরাসরি কম্পোনেন্ট কল করুন */}
-//       <HowItWorks />
+//       {/* <Banner></Banner>
+ 
+//       <HowItWorks></HowItWorks>
+//       <SkinProblem></SkinProblem>
+//      <WhyRecommended></WhyRecommended>
+//      <Brands></Brands>
+//      <ExpertBoard></ExpertBoard>
+//     <ReviewClient></ReviewClient>
+  
+//     <ClinicalEvidence></ClinicalEvidence> */}
+//     <Banner />
+
+    
+     
+
+
       
-//       {/* যদি আলাদা করে কিছু লিখতে চান, তবে সেটিতেও ক্লাস দিন */}
-//       <section className="bg-white dark:bg-[#060b13] text-slate-900 dark:text-white p-10">
-//         <h2 className="text-2xl font-bold">Hello</h2>
-//       </section>
+//       <SkinProblem />
+// <Productspage></Productspage>
+//       <Brands />
+//       <HowItWorks />
+
+    
+//       <WhyRecommended />
+
+     
+//       <ClinicalEvidence />
+
+      
+//       <ExpertBoard />
+
+    
+//       <ReviewClient />
 //     </div>
 //   );
 // }
+// src/app/page.jsx
 
 import SkinProblem from "@/component/SkinProblem";
-import Banner from "./Banner/page";
+import HeroBanner from "@/app/Banner/page"; // এটি যদি আপনার পাঠানো কোডটি হয়
 import HowItWorks from "@/component/HowitWork";
 import WhyRecommended from "@/component/WhyRecomanded";
 import Brands from "@/component/Brands";
 import ExpertBoard from "@/component/Expertise";
 import ReviewClient from "@/component/ReviewClient";
-import Authenticity from "@/component/Authecity";
 import ClinicalEvidence from "@/component/BeforeAfter";
-
+import Allproducts from "./Allproducts/page"; 
+import ProductsPage from "./products/page";
 
 export default function Home() {
   return (
-    <div>
-      <Banner></Banner>
- 
-      <HowItWorks></HowItWorks>
-      <SkinProblem></SkinProblem>
-     <WhyRecommended></WhyRecommended>
-     <Brands></Brands>
-     <ExpertBoard></ExpertBoard>
-    <ReviewClient></ReviewClient>
-  
-    <ClinicalEvidence></ClinicalEvidence>
-    </div>
+    <main>
+      {/* ব্যানারটি এখানে */}
+      <HeroBanner />
+      
+      <div className="space-y-10">
+        <SkinProblem />
+        <ProductsPage></ProductsPage>
+       
+        <Brands />
+        <HowItWorks />
+        <WhyRecommended />
+        <ClinicalEvidence />
+        <ExpertBoard />
+        <ReviewClient />
+      </div>
+    </main>
   );
 }

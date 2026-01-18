@@ -1,0 +1,26 @@
+[
+  {
+    "name": "cleanser",
+    "price": "34",
+    "description": "this is a good for face",
+    "category": "Skincare",
+    "addedBy": "rimia9941@gmail.com",
+    "createdAt": "1/18/2026, 10:23:06 AM"
+  },
+  {
+    "name": "cleanser",
+    "price": "89",
+    "description": "dfgdfg",
+    "category": "Skincare",
+    "addedBy": "rimia9941@gmail.com",
+    "createdAt": "1/18/2026, 10:40:37 AM"
+  },
+  {
+    "name": "cleanser",
+    "price": "54",
+    "description": "dfsdf",
+    "category": "Skincare",
+    "addedBy": "rimia9941@gmail.com",
+    "createdAt": "1/18/2026, 10:56:28 AM"
+  }
+]
