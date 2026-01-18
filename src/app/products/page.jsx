@@ -327,7 +327,7 @@ export const dynamic = "force-dynamic";
 export default async function ProductsPage() {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://derma-care-hub.vercel.app";
 
-  const res = await fetch(`${baseUrl}/api/products`, {
+  const res = await fetch(`${baseUrl}/api/products?limit=8`, {
     cache: 'no-store' 
   });
 

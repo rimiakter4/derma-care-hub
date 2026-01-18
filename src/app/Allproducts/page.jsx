@@ -167,5 +167,6 @@ export default async function Allproducts() {
         </div>
       </div>
     </div>
+    
   );
 }
