@@ -14,8 +14,9 @@
 // }
 
 import { NextResponse } from "next/server";
+import { products } from "./data";
 // আপনার ডাটা ফাইলের পাথ অনুযায়ী ইমপোর্ট করুন
-import { products } from "../../products/data"; 
+// import { products } from "../../products/data"; 
 
 // GET মেথড: সব প্রোডাক্ট পাঠানোর জন্য
 export async function GET() {

@@ -30,7 +30,8 @@
 //   }
 // }
 import { NextResponse } from "next/server";
-import { products } from "../../../products/data";
+import { products } from "../data";
+// import { products } from "../../../products/data";
 
 export async function GET(request, { params }) {
   const { id } = await params;
