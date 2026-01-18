@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🌿 Derma Care Hub - Premium Inventory Management
 
-## Getting Started
+Derma Care Hub is a high-end, medical-grade skincare product management system. It provides a seamless interface for managing premium skincare, haircare, and treatment products with a focus on aesthetics and performance.
 
-First, run the development server:
+## 🚀 Live Demo
+**Live Link:** https://derma-care-hub.vercel.app/
 
-```bash
+---
+
+## 🛠️ Technologies Used
+
+- **Frontend:** Next.js 15 (App Router)
+- **Backend API:** Express.js (Node.js) 
+- **Data Management:** Local JSON Database (File-based storage)
+- **Styling:** Tailwind CSS (Custom Theme Variables for Light/Dark Mode)
+- **Authentication:** NextAuth.js
+- **Icons:** Lucide React
+- **Notifications:** React Toastify
+
+---
+
+## ✨ Features Implemented
+
+1. **Dual-Theme Support:** A premium dark and light mode UI designed with custom background and surface variables (`bg-background`, `bg-surface`).
+2. **Product Management:** Full CRUD capabilities to add, view, and manage skincare products.
+3. **JSON-Based Storage:** Efficiently handling product data using an Express.js server and local JSON persistence.
+4. **Secure Authentication:** Mock login system with protected routes (Add Product page is restricted to authenticated users).
+5. **Base64 Image Upload:** Instant image preview and Base64 conversion for storing images directly within the product data.
+6. **Responsive Design:** Fully optimized for Mobile, Tablet, and Desktop views.
+7. **Toast Notifications:** Real-time feedback using React Toastify for successful product creation.
+
+---
+
+## 🔑 Login Credentials (Mock)
+To access the protected inventory panel, use the following credentials:
+- **Email:** `admin@dermacare.com`
+- **Password:** `admin123`
+
+---
+
+## 🛤️ Route Summary
+
+| Route | Description | Access |
+| :--- | :--- | :--- |
+| `/` | Home Page / Landing | Public |
+| `/login` | Authentication Page | Public |
+| `/Allproducts` | Product Listing / Gallery | Public |
+| `/AddItem` | Add New Product Form | **Private (Protected)** |
+
+---
+
+## 💻 Setup & Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/rimiakter4/derma-care-hub.git
+   cd derma-care-hub
+Install dependencies:
+
+Bash
+npm install
+Run the development server:
+
+Bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

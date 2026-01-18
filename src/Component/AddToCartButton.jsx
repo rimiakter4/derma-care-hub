@@ -1,39 +1,4 @@
-// "use client";
 
-// import { useRouter } from 'next/navigation';
-// import { useSession } from 'next-auth/react';
-
-// export default function AddToCartButton({ productPrice }) {
-//   const router = useRouter();
-//   const { data: session } = useSession();
-
-//   const handleAddToCart = () => {
-//     if (!session) {
-//       router.push("/login");
-//     } else {
-//       // এখানে আপনার কার্ট লজিক বা সাকসেস মেসেজ দিতে পারেন
-//     toast.('Successfully added to cart!', {
-//       icon: '🛒',
-//       style: {
-//         borderRadius: '16px',
-//         background: '#1a1a1a',
-//         color: '#fff',
-//         fontSize: '14px',
-//         fontWeight: 'bold',
-//         padding: '16px',
-//       },
-//     }
-//   };
-
-//   return (
-//     <button
-//       onClick={handleAddToCart}
-//       className="w-full bg-primary text-white dark:bg-secondary py-5 rounded-2xl font-bold text-xl hover:scale-[1.02] transition-all shadow-2xl shadow-primary/20"
-//     >
-//       Add to Cart — ${productPrice}
-//     </button>
-//   );
-// }
 "use client"; // এটি নিশ্চিত করুন
 
 import { useRouter } from "next/navigation";

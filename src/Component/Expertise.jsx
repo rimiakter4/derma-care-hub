@@ -38,7 +38,7 @@ const specialists = [
     role: "Cosmetic Specialist",
     degree: "PhD, Clinical Science",
     // Stable image of a cosmetic specialist
-    img: "https://i.ibb.co/GMcW3zD/female-doctor-2.jpg",
+    img: "https://i.ibb.co.com/DHZ5qYHL/download.png",
     quote: "Skincare is not one-size-fits-all; it's a precise biological calculation."
   }
 ];

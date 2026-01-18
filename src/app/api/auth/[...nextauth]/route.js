@@ -20,13 +20,13 @@ export const authOptions = {
       async authorize(credentials) {
         // 🔐 Hardcoded user
         if (
-          credentials.email === "admin@example.com" &&
+          credentials.email === "admin@skin.com" &&
           credentials.password === "123456"
         ) {
           return {
             id: "1",
-            name: "Admin User",
-            email: "admin@example.com",
+            name: " User",
+            email: "admin@skin.com",
           };
         }
         return null; // login fail

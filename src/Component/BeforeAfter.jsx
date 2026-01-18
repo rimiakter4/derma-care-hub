@@ -10,7 +10,7 @@ const cases = [
     title: "Severe Acne Control",
     duration: "4 Weeks",
     desc: "Active breakouts reduced by 85% using clinical-grade Salicylic Acid & Niacinamide.",
-    beforeImg: "https://images.pexels.com/photos/3762871/pexels-photo-3762871.jpeg?auto=compress&cs=tinysrgb&w=600",
+    beforeImg: "https://i.ibb.co.com/wNvfg6Qy/istockphoto-1352332078-612x612.jpg",
     afterImg: "https://images.pexels.com/photos/3762466/pexels-photo-3762466.jpeg?auto=compress&cs=tinysrgb&w=600"
   },
   {
@@ -18,8 +18,8 @@ const cases = [
     title: "Hyperpigmentation",
     duration: "8 Weeks",
     desc: "Targeted Vitamin C and Retinol therapy faded sun spots and evening out skin tone.",
-    beforeImg: "https://images.pexels.com/photos/3762185/pexels-photo-3762185.jpeg?auto=compress&cs=tinysrgb&w=600",
-    afterImg: "https://images.pexels.com/photos/3762731/pexels-photo-3762731.jpeg?auto=compress&cs=tinysrgb&w=600"
+    beforeImg: "https://i.ibb.co.com/FLWCnk9X/istockphoto-1456638962-612x612.jpg",
+    afterImg: "https://i.ibb.co.com/LXbttgmb/stock-photo-dark-spots-freckles-hyperpigmentation-melasma-or-chloasma-concept-skin-lightening-skin-2.jpg"
   }
 ];
 
@@ -60,7 +60,7 @@ const ClinicalEvidence = () => {
                 {/* Image Container 1 (Before) */}
                 <div className="relative flex-1 rounded-[2.5rem] overflow-hidden border-2 border-primary/5 shadow-xl">
                    <img src={item.beforeImg} alt="Before" className="w-full h-64 object-cover grayscale" />
-                   <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Before</div>
+                   <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase ">Before</div>
                 </div>
 
                 {/* Image Container 2 (After) */}
