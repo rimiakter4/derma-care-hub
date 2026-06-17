@@ -1,6 +1,3 @@
-
-
-
 "use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -20,29 +17,37 @@ export default function AddItemPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  
+  // ইমেজ প্রিভিউ এবং ডাটাবেজে পাঠানোর জন্য স্টেট
   const [imagePreview, setImagePreview] = useState(null);
   const [base64Image, setBase64Image] = useState("");
 
+  // অথেন্টিকেশন চেক
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/login");
     }
   }, [status, router]);
 
-  // ইমেজ সিলেক্ট এবং প্রিভিউ হ্যান্ডলার
+  // ইমেজ ফাইল হ্যান্ডলার
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      // ৫ এমবির বেশি ফাইল হলে এরর দেখাবে
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("File size too large! Max 5MB.");
+        return;
+      }
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result); 
-        setBase64Image(reader.result);  
+        setImagePreview(reader.result); // ব্রাউজারে দেখানোর জন্য
+        setBase64Image(reader.result);  // ডাটাবেজে সেভ করার জন্য
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); 
     }
   };
 
-  // ইমেজ রিমুভ করার ফাংশন (যা আপনার আগে মিসিং ছিল)
+  // ইমেজ রিমুভ করার ফাংশন
   const removeImage = () => {
     setImagePreview(null);
     setBase64Image("");
@@ -50,6 +55,13 @@ export default function AddItemPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // ইমেজ আপলোড না করলে সতর্ক করবে
+    if (!base64Image) {
+      toast.warn("Please upload a product image.");
+      return;
+    }
+
     setLoading(true);
 
     const formData = {
@@ -57,7 +69,7 @@ export default function AddItemPage() {
       price: parseFloat(e.target.price.value),
       description: e.target.description.value,
       category: e.target.category.value,
-      image: base64Image || "https://placehold.co/600x400/png", 
+      image: base64Image, // সঠিক ইমেজ ডাটা পাঠানো হচ্ছে
     };
 
     try {
@@ -67,11 +79,18 @@ export default function AddItemPage() {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         toast.success("Product successfully added!");
+        e.target.reset();
+        removeImage();
+        
+        // সাকসেস হলে অল প্রোডাক্ট পেজে পাঠিয়ে দিবে
         router.push("/Allproducts");
+        router.refresh(); 
       } else {
-        toast.error("Failed to add product.");
+        toast.error(result.error || "Failed to add product.");
       }
     } catch (error) {
       toast.error("Error connecting to server.");
@@ -80,7 +99,6 @@ export default function AddItemPage() {
     }
   };
 
-  // সেশন চেক করার সময় লোডিং স্টেট
   if (status === "loading") return (
     <div className="min-h-screen flex justify-center items-center bg-background text-primary">
       <Loader2 className="animate-spin w-10 h-10" />
@@ -91,7 +109,6 @@ export default function AddItemPage() {
     <div className="min-h-screen pt-32 pb-20 px-4 bg-background transition-colors duration-500">
       <div className="max-w-2xl mx-auto bg-surface border border-border-ui shadow-2xl rounded-[2.5rem] p-8 md:p-12">
         
-        {/* হেডার */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-4 border border-secondary/20">
             <PlusCircle className="text-secondary w-8 h-8" />
@@ -102,8 +119,7 @@ export default function AddItemPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          
-          {/* Product Name */}
+          {/* প্রোডাক্ট নেম */}
           <div className="relative group">
             <Package className="absolute left-4 top-1/2 -translate-y-1/2 text-primary/30 group-focus-within:text-secondary w-5 h-5" />
             <input 
@@ -116,7 +132,8 @@ export default function AddItemPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="relative group">
+            {/* প্রাইজ */}
+            {/* <div className="relative group">
               <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 text-primary/30 group-focus-within:text-secondary w-5 h-5" />
               <input 
                 name="price" 
@@ -126,8 +143,23 @@ export default function AddItemPage() {
                 className="w-full pl-12 pr-4 py-4 bg-accent/5 border border-border-ui focus:border-secondary/50 rounded-2xl outline-none text-primary" 
                 required 
               />
-            </div>
-
+            </div> */}
+<div className="relative group">
+  {/* ডলার সাইনের বদলে টাকা (৳) সাইন */}
+  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl font-bold text-primary/30 group-focus-within:text-secondary select-none">
+    ৳
+  </span>
+  
+  <input 
+    name="price" 
+    type="number" 
+    step="1" // টাকা সাধারণত ডেসিমাল ছাড়া হয়, চাইলে ০.০১ রাখতে পারেন
+    placeholder="Price (TK)" 
+    className="w-full pl-12 pr-4 py-4 bg-accent/5 border border-border-ui focus:border-secondary/50 rounded-2xl outline-none text-primary placeholder:text-primary/30" 
+    required 
+  />
+</div>
+            {/* ক্যাটাগরি */}
             <div className="relative group">
               <select 
                 name="category" 
@@ -137,7 +169,7 @@ export default function AddItemPage() {
                 <option value="Haircare">Haircare</option>
                 <option value="Treatment">Treatment</option>
               </select>
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary/30 group-focus-within:text-secondary">▼</div>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-primary/30">▼</div>
             </div>
           </div>
 
@@ -173,7 +205,7 @@ export default function AddItemPage() {
             )}
           </div>
 
-          {/* Description */}
+          {/* ডেসক্রিপশন */}
           <div className="relative group">
             <AlignLeft className="absolute left-4 top-5 text-primary/30 group-focus-within:text-secondary w-5 h-5" />
             <textarea 
@@ -185,6 +217,7 @@ export default function AddItemPage() {
             />
           </div>
 
+          {/* সাবমিট বাটন */}
           <button 
             type="submit"
             disabled={loading} 

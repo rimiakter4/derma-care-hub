@@ -1,47 +1,26 @@
-import { NextResponse } from 'next/server';
-// আপনার data.js ফাইলটি যেখানে আছে সেখান থেকে ইমপোর্ট করুন
-import { products } from '../data'; 
+
+import { NextResponse } from "next/server";
+import dbConnect from "@/lib/dbConnect";
+import Product from "@/models/Product";
+import mongoose from "mongoose";
 
 export async function GET(request, { params }) {
   try {
-    // ১. params টাকে await করতে হবে (Next.js 15+ এর নিয়ম)
-    const { id } = await params; 
-    
-    // ২. products অ্যারে থেকে আইডি মিলিয়ে প্রোডাক্টটি খুঁজুন
-    // id যেহেতু স্ট্রিং হিসেবে আসে, তাই '==' ব্যবহার করা নিরাপদ অথবা Number(id) করে নিন
-    const product = products.find((p) => p.id == id);
+    await dbConnect();
+    const { id } = await params;
 
-    // ৩. যদি প্রোডাক্ট না পাওয়া যায়
-    if (!product) {
-      return NextResponse.json(
-        { message: "Product not found" }, 
-        { status: 404 }
-      );
+    // ID valid kina check kora (Etai apnar error er karon hote pare)
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ message: "Invalid Product ID" }, { status: 400 });
     }
 
-    // ৪. প্রোডাক্ট পাওয়া গেলে তা রিটার্ন করুন
-    return NextResponse.json(product);
+    const product = await Product.findById(id);
+    if (!product) {
+      return NextResponse.json({ message: "Product not found" }, { status: 404 });
+    }
 
+    return NextResponse.json(product);
   } catch (error) {
-    return NextResponse.json(
-      { message: "Internal Server Error" }, 
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Server Error" }, { status: 500 });
   }
 }
-// import { NextResponse } from "next/server";
-// import { products } from "../data";
-// // import { products } from "../../../products/data";
-
-// export async function GET(request, { params }) {
-//   const { id } = await params;
-  
-//   // প্রোডাক্ট খুঁজে বের করা
-//   const product = products.find((p) => p.id.toString() === id);
-
-//   if (!product) {
-//     return NextResponse.json({ message: "Product not found" }, { status: 404 });
-//   }
-
-//   return NextResponse.json(product);
-// }
